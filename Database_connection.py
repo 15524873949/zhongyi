@@ -19,10 +19,13 @@ from Crypto.Random import get_random_bytes
 
 
 class DatabaseConnectionDialog(QDialog):
-    def __init__(self):
+    def __init__(self, initial_config=None):
         super().__init__()
         self.setWindowTitle("数据库连接配置")
+        self.initial_config = initial_config
         self.setup_ui()
+        if self.initial_config:
+            self.load_initial_config()
 
     def setup_ui(self):
         layout = QVBoxLayout()
@@ -49,6 +52,19 @@ class DatabaseConnectionDialog(QDialog):
         layout.addLayout(form)
         layout.addWidget(self.test_btn)
         self.setLayout(layout)
+
+    def load_initial_config(self):
+        """预填充当前配置到输入框"""
+        if not self.initial_config:
+            return
+        
+        config = self.initial_config
+        self.host_edit.setText(config.get("host", ""))
+        self.port_edit.setText(str(config.get("port", "3306")))
+        self.user_edit.setText(config.get("user", ""))
+        self.password_edit.setText(config.get("password", ""))
+        self.database_edit.setText(config.get("database", ""))
+        self.charset_edit.setText(config.get("charset", "utf8mb4"))
 
     def get_config(self):
         return {

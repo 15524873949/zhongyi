@@ -286,6 +286,48 @@ class Ui_Login_Dialog(object):
 
         self.horizontalLayout_3.addWidget(self.m_bt_PassReset)
 
+        self.m_bt_Settings = QPushButton(self.Backgroup_img)
+        self.m_bt_Settings.setObjectName(u"m_bt_Settings")
+        self.m_bt_Settings.setEnabled(True)
+        self.m_bt_Settings.setMinimumSize(QSize(62, 30))
+        self.m_bt_Settings.setMaximumSize(QSize(65, 30))
+        self.m_bt_Settings.setFont(font1)
+        self.m_bt_Settings.setAutoFillBackground(False)
+        self.m_bt_Settings.setStyleSheet(u"QPushButton {\n"
+"                /* \u57fa\u7840\u53c2\u6570 */\n"
+"				letter-spacing: 2px;\n"
+"                border-radius: 3px;\n"
+"                border: 1px solid rgba(140, 170, 30, 0.78);\n"
+"                padding: 3px 10px;\n"
+"                color: black;\n"
+"\n"
+"                /* \u4e3b\u6e10\u53d8 (\u767d \u2192 \u7070 \u2192 \u6df1\u7070) */\n"
+"                background-color: rgba(162, 255, 188,160);\n"
+"\n"
+"                /* \u5916\u90e8\u9634\u5f71 */\n"
+"                box-shadow: 0 2px 4px rgba(140, 170, 30, 0.3);\n"
+"            }\n"
+"\n"
+"            QPushButton:hover {\n"
+"                /* \u60ac\u505c\u9ad8\u4eae */\n"
+"                background-color:rgba(54, 164, 225,100);\n"
+"                border-color: rgba(150, 180, 35, 0.86);\n"
+"                box-shadow: 0 3px 5px rgba(140, 170, 30, 0.4);\n"
+"            }\n"
+"\n"
+"            QPushButton:pressed {\n"
+"                /* \u6309\u4e0b\u6548\u679c */\n"
+"               background-color: rgb(149, 227, 132);\n"
+"    "
+                        "            box-shadow: inset 1px 2px 3px rgba(100, 130, 20, 0.3),\n"
+"                           inset -1px -1px 2px rgba(255, 255, 255, 0.2);\n"
+"                border-color: rgba(120, 150, 25, 0.86);\n"
+"                padding: 5px 10px 3px 10px;\n"
+"            }")
+        self.m_bt_Settings.setCheckable(False)
+
+        self.horizontalLayout_3.addWidget(self.m_bt_Settings)
+
 
         self.InputSection.addLayout(self.horizontalLayout_3)
 
@@ -317,6 +359,7 @@ class Ui_Login_Dialog(object):
         self.m_bt_loginConfirm.setDefault(True)
         self.m_bt_Register.setDefault(True)
         self.m_bt_PassReset.setDefault(True)
+        self.m_bt_Settings.setDefault(True)
 
 
         QMetaObject.connectSlotsByName(Login_Dialog)
@@ -331,5 +374,6 @@ class Ui_Login_Dialog(object):
         self.m_bt_loginConfirm.setText(QCoreApplication.translate("Login_Dialog", u"\u767b\u5f55", None))
         self.m_bt_Register.setText(QCoreApplication.translate("Login_Dialog", u"\u6ce8\u518c", None))
         self.m_bt_PassReset.setText(QCoreApplication.translate("Login_Dialog", u"\u91cd\u8bbe\u5bc6\u7801", None))
+        self.m_bt_Settings.setText(QCoreApplication.translate("Login_Dialog", u"\u8bbe\u7f6e", None))
     # retranslateUi
 

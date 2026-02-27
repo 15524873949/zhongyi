@@ -88,6 +88,7 @@ class LoginDialog(QDialog, Ui_Login_Dialog):
         self.m_edt_InputPass.returnPressed.connect(self.login)
         self.m_bt_Register.clicked.connect(self.register_user)
         self.m_bt_PassReset.clicked.connect(self.reset_password)
+        self.m_bt_Settings.clicked.connect(self.open_database_settings)
 
     def get_db_connection(self):
         return pymysql.connect(**self.db_config)
@@ -312,6 +313,26 @@ class LoginDialog(QDialog, Ui_Login_Dialog):
         finally:
             if conn:
                 conn.close()
+
+    def open_database_settings(self):
+        """打开数据库连接配置对话框（仅限管理员）"""
+        # 验证管理员权限
+        username = self.m_edt_InputUser.text().strip()
+        if username != "Admin":
+            QMessageBox.warning(self, "权限不足", "只有管理员账号才能修改数据库配置！")
+            return
+
+        # 打开配置对话框，传入当前配置用于预填充
+        from Database_connection import DatabaseConnectionDialog
+        dialog = DatabaseConnectionDialog(initial_config=self.db_config)
+        
+        if dialog.exec() == QDialog.Accepted:
+            # 配置已更新，提示用户重启应用
+            QMessageBox.information(
+                self, 
+                "配置已更新", 
+                "数据库连接配置已成功更新！\n\n请重启应用程序以使新配置生效。"
+            )
 
 
 if __name__ == "__main__":
